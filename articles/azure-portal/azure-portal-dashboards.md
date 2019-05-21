@@ -4,17 +4,17 @@ description: This article explains how to create and edit dashboards in the Azur
 services: azure-portal
 documentationcenter: ''
 author: sewatson
-manager: timlt
+manager: doubeby
 editor: tysonn
 
 ms.assetid: ff422f36-47d2-409b-8a19-02e24b03ffe7
 ms.service: azure-portal
 ms.devlang: NA
-ms.topic: article
+ms.topic: conceptual
 ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 09/06/2016
-ms.author: sewatson
+ms.author: kfollis
 
 ---
 # Create and share dashboards in the Azure portal
@@ -89,6 +89,6 @@ After your dashboard is published, the **Sharing + access** control pane will re
 ![manage access control](./media/azure-portal-dashboards/manage-access.png)
 
 ## Next steps
-* To manage resources, see [Manage Azure resources through portal](../azure-resource-manager/resource-group-portal.md).
+* To manage resources, see [Manage Azure resources by using the Azure portal](../azure-resource-manager/manage-resources-portal.md).
 * To deploy resources, see [Deploy resources with Resource Manager templates and Azure portal](../azure-resource-manager/resource-group-template-deploy-portal.md).
 

@@ -2,26 +2,25 @@
 title: Copy or move data to Azure Storage with AzCopy on Linux | Microsoft Docs
 description: Use the AzCopy on Linux utility to move or copy data to or from blob and file content. Copy data to Azure Storage from local files, or copy data within or between storage accounts. Easily migrate your data to Azure Storage.
 services: storage
-documentationcenter: ''
-author: seguler
-manager: jahogg
-editor: tysonn
+author: normesta
 
-ms.assetid: aa155738-7c69-4a83-94f8-b97af4461274
 ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
-ms.date: 04/19/2018
-ms.author: seguler
-
+ms.date: 04/26/2018
+ms.author: normesta
+ms.reviewer: seguler
+ms.subservice: common
 ---
+
 # Transfer data with AzCopy on Linux
 
 AzCopy is a command-line utility designed for copying data to/from Microsoft Azure Blob and File storage, using simple commands designed for optimal performance. You can copy data between a file system and a storage account, or between storage accounts.  
 
-There are two versions of AzCopy that you can download. AzCopy on Linux targets Linux platforms offering POSIX style command-line options. [AzCopy on Windows](../storage-use-azcopy.md) offers Windows style command-line options. This article covers AzCopy on Linux. 
+> [!IMPORTANT]
+> This article describes an older version of AzCopy.
+>To install the most recent version of AzCopy, see [AzCopy v10](storage-use-azcopy-v10.md).
+
+If you choose to install the older version of AzCopy (AzCopy v8.1), then there are multiple versions of AzCopy v8.1 that you can download. AzCopy on Linux targets Linux platforms offering POSIX style command-line options. [AzCopy on Windows](../storage-use-azcopy.md) offers Windows style command-line options. This article covers AzCopy on Linux. 
 
 > [!NOTE]  
 > Starting in AzCopy 7.2 version, the .NET Core dependencies are packaged with the AzCopy package. If you use 7.2 version or later, you no longer need to install .NET Core as a pre-requisite.
@@ -31,7 +30,10 @@ There are two versions of AzCopy that you can download. AzCopy on Linux targets 
 ### Installation on Linux
 
 > [!NOTE]
-> You might need to install .NET Core 2.1 dependencies highlighted in this [.NET Core Pre-requisites article](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x) depending on your distribution. For mainstream distributions like Ubuntu 16.04, and RHEL 7 this is usually not needed.
+> You might need to install .NET Core 2.1 dependencies highlighted in this [.NET Core Pre-requisites article](https://docs.microsoft.com/dotnet/core/linux-prerequisites?tabs=netcore2x) depending on your distribution. 
+>
+> For RHEL 7 distributions, install ICU and libunwind dependencies:
+> ```yum install -y libunwind icu```
 
 Installing AzCopy on Linux (v7.2 or later) is as easy as extracting a tar package and running the install script. 
 
@@ -58,9 +60,9 @@ You can remove the extracted files once AzCopy on Linux is installed. Alternativ
 Add apt source for Microsoft Linux product repository and install AzCopy:
 
 ```bash
-echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod/ xenial main" > azure.list
+sudo echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod/ trusty main" > azure.list
 sudo cp ./azure.list /etc/apt/sources.list.d/
-apt-key adv --keyserver packages.microsoft.com --recv-keys B02C46DF417A0893
+sudo apt-key adv --keyserver packages.microsoft.com --recv-keys EB3E94ADBE1229CF
 ```
 
 ```bash
@@ -73,9 +75,9 @@ sudo apt-get install azcopy
 Add apt source for Microsoft Linux product repository and install AzCopy:
 
 ```bash
-sudo echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod/ trusty main" > azure.list
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod/ xenial main" > azure.list
 sudo cp ./azure.list /etc/apt/sources.list.d/
-apt-key adv --keyserver packages.microsoft.com --recv-keys B02C46DF417A0893
+sudo apt-key adv --keyserver packages.microsoft.com --recv-keys EB3E94ADBE1229CF
 ```
 
 ```bash
@@ -102,7 +104,7 @@ azcopy \
 	--source-key <key> 
 ```
 
-If the folder `/mnt/myfiles` does not exist, AzCopy creates it and downloads `abc.txt ` into the new folder. 
+If the folder `/mnt/myfiles` does not exist, AzCopy creates it and downloads `abc.txt` into the new folder. 
 
 ### Download single blob from secondary region
 
@@ -343,6 +345,9 @@ azcopy \
 	--set-content-type
 ```
 
+### Customizing the MIME content type mapping
+AzCopy uses a configuration file that contains a mapping of file extension to content type. You can customize this mapping and add new pairs as needed. The mapping is located at  ```/usr/lib/azcopy/AzCopyConfig.json```
+
 ## Blob: Copy
 ### Copy single blob within Storage account
 
@@ -354,7 +359,7 @@ azcopy \
 	--dest-key <key>
 ```
 
-When you copy a blob without --sync-copy option, a [server-side copy](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) operation is performed.
+When you copy a blob without --sync-copy option, a [server-side copy](https://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) operation is performed.
 
 ### Copy single blob across Storage accounts
 
@@ -366,7 +371,7 @@ azcopy \
 	--dest-key <key2>
 ```
 
-When you copy a blob without --sync-copy option, a [server-side copy](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) operation is performed.
+When you copy a blob without --sync-copy option, a [server-side copy](https://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) operation is performed.
 
 ### Copy single blob from secondary region to primary region
 
@@ -485,7 +490,7 @@ azcopy \
 	--dest-key <key2> \
 	--recursive
 ```
-When you copy a file across file shares, a [server-side copy](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) operation is performed.
+When you copy a file across file shares, a [server-side copy](https://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) operation is performed.
 
 ### Copy from file share to blob
 
@@ -497,7 +502,7 @@ azcopy \
 	--dest-key <key2> \
 	--recursive
 ```
-When you copy a file from file share to blob, a [server-side copy](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) operation is performed.
+When you copy a file from file share to blob, a [server-side copy](https://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) operation is performed.
 
 ### Copy from blob to file share
 
@@ -509,7 +514,7 @@ azcopy \
 	--dest-key <key2> \
 	--recursive
 ```
-When you copy a file from blob to file share, a [server-side copy](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) operation is performed.
+When you copy a file from blob to file share, a [server-side copy](https://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) operation is performed.
 
 ### Synchronously copy files
 You can specify the `--sync-copy` option to copy data from File Storage to File Storage, from File Storage to Blob Storage and from Blob Storage to File Storage synchronously. AzCopy runs this operation by downloading the source data to local memory, and then uploading it to destination. In this case, standard egress cost applies.
@@ -703,20 +708,19 @@ For more information about Azure Storage and AzCopy, see the following resources
 * [Introduction to Azure Storage](../storage-introduction.md)
 * [Create a storage account](../storage-create-storage-account.md)
 * [Manage blobs with Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs)
-* [Using the Azure CLI 2.0 with Azure Storage](../storage-azure-cli.md)
+* [Using the Azure CLI with Azure Storage](../storage-azure-cli.md)
 * [How to use Blob storage from C++](../blobs/storage-c-plus-plus-how-to-use-blobs.md)
 * [How to use Blob storage from Java](../blobs/storage-java-how-to-use-blob-storage.md)
 * [How to use Blob storage from Node.js](../blobs/storage-nodejs-how-to-use-blob-storage.md)
 * [How to use Blob storage from Python](../blobs/storage-python-how-to-use-blob-storage.md)
 
 ### Azure Storage blog posts:
-* [Announcing AzCopy on Linux Preview](https://azure.microsoft.com/en-in/blog/announcing-azcopy-on-linux-preview/)
+* [Announcing AzCopy on Linux Preview](https://azure.microsoft.com/blog/announcing-azcopy-on-linux-preview/)
 * [Introducing Azure Storage Data Movement Library Preview](https://azure.microsoft.com/blog/introducing-azure-storage-data-movement-library-preview-2/)
-* [AzCopy: Introducing synchronous copy and customized content type](http://blogs.msdn.com/b/windowsazurestorage/archive/2015/01/13/azcopy-introducing-synchronous-copy-and-customized-content-type.aspx)
-* [AzCopy: Announcing General Availability of AzCopy 3.0 plus preview release of AzCopy 4.0 with Table and File support](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/10/29/azcopy-announcing-general-availability-of-azcopy-3-0-plus-preview-release-of-azcopy-4-0-with-table-and-file-support.aspx)
-* [AzCopy: Optimized for Large-Scale Copy Scenarios](http://go.microsoft.com/fwlink/?LinkId=507682)
-* [AzCopy: Support for read-access geo-redundant storage](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/04/07/azcopy-support-for-read-access-geo-redundant-account.aspx)
-* [AzCopy: Transfer data with restartable mode and SAS token](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/09/07/azcopy-transfer-data-with-re-startable-mode-and-sas-token.aspx)
-* [AzCopy: Using cross-account Copy Blob](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/04/01/azcopy-using-cross-account-copy-blob.aspx)
-* [AzCopy: Uploading/downloading files for Azure Blobs](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/12/03/azcopy-uploading-downloading-files-for-windows-azure-blobs.aspx)
-
+* [AzCopy: Introducing synchronous copy and customized content type](https://blogs.msdn.com/b/windowsazurestorage/archive/2015/01/13/azcopy-introducing-synchronous-copy-and-customized-content-type.aspx)
+* [AzCopy: Announcing General Availability of AzCopy 3.0 plus preview release of AzCopy 4.0 with Table and File support](https://blogs.msdn.com/b/windowsazurestorage/archive/2014/10/29/azcopy-announcing-general-availability-of-azcopy-3-0-plus-preview-release-of-azcopy-4-0-with-table-and-file-support.aspx)
+* [AzCopy: Optimized for Large-Scale Copy Scenarios](https://go.microsoft.com/fwlink/?LinkId=507682)
+* [AzCopy: Support for read-access geo-redundant storage](https://blogs.msdn.com/b/windowsazurestorage/archive/2014/04/07/azcopy-support-for-read-access-geo-redundant-account.aspx)
+* [AzCopy: Transfer data with restartable mode and SAS token](https://blogs.msdn.com/b/windowsazurestorage/archive/2013/09/07/azcopy-transfer-data-with-re-startable-mode-and-sas-token.aspx)
+* [AzCopy: Using cross-account Copy Blob](https://blogs.msdn.com/b/windowsazurestorage/archive/2013/04/01/azcopy-using-cross-account-copy-blob.aspx)
+* [AzCopy: Uploading/downloading files for Azure Blobs](https://blogs.msdn.com/b/windowsazurestorage/archive/2012/12/03/azcopy-uploading-downloading-files-for-windows-azure-blobs.aspx)

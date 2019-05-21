@@ -2,20 +2,12 @@
 title: 'Azure VPN Gateway | Microsoft Docs'
 description: Learn about what a VPN gateway is and the ways you can use a VPN gateway to connect to Azure virtual networks. Including IPsec/IKE Site-to-Site cross-premises and VNet-to-VNet solutions, as well as Point-to-Site VPN.
 services: vpn-gateway
-documentationcenter: na
 author: cherylmc
-manager: jeconnoc
-editor: ''
-tags: azure-resource-manager
-Customer intent: As someone with a basic network background that is new to Azure, I want to understand the capabilities of Azure VPN Gateway so that I can securely connect to my Azure virtual networks.
+Customer intent: As someone with a basic network background, but is new to Azure, I want to understand the capabilities of Azure VPN Gateway so that I can securely connect to my Azure virtual networks.
 
-ms.assetid: 2358dd5a-cd76-42c3-baf3-2f35aadc64c8
 ms.service: vpn-gateway
-ms.devlang: na
 ms.topic: overview
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
-ms.date: 04/19/2018
+ms.date: 02/22/2019
 ms.author: cherylmc
 
 ---
@@ -25,9 +17,9 @@ A VPN gateway is a specific type of virtual network gateway that is used to send
 
 ## <a name="whatis"></a>What is a virtual network gateway?
 
-A virtual network gateway is composed of two or more virtual machines that are deployed to a specific subnet called the *gateway subnet*. The VMs that are located in the gateway subnet are created when you create the virtual network gateway. Virtual network gateway VMs are configured to contain routing tables and gateway services specific to the gateway. You can't directly configure the VMs that are part of the virtual network gateway and you should never deploy additional resources to the gateway subnet.
+A virtual network gateway is composed of two or more virtual machines that are deployed to a specific subnet you create, which is called the *gateway subnet*. The VMs that are located in the gateway subnet are created when you create the virtual network gateway. Virtual network gateway VMs are configured to contain routing tables and gateway services specific to the gateway. You can't directly configure the VMs that are part of the virtual network gateway and you should never deploy additional resources to the gateway subnet.
 
-Creating a VPN gateway can take up to 45 minutes to complete. When you create a VPN gateway, gateway VMs are deployed to the gateway subnet and configured with the settings that you specify. After you create a VPN gateway, you can create an IPsec/IKE VPN tunnel connection between that VPN gateway and another VPN gateway (VNet-to-VNet), or create a cross-premises IPsec/IKE VPN tunnel connection between the VPN gateway and an on-premises VPN device (Site-to-Site). You can also create a Point-to-Site VPN connection (VPN over IKEv2 or SSTP), which lets you connect to your virtual network from a remote location, such as from a conference or from home.
+Creating a virtual network gateway can take up to 45 minutes to complete. When you create a virtual network gateway, gateway VMs are deployed to the gateway subnet and configured with the settings that you specify. One of the settings you configure is the gateway type. The gateway type 'vpn' specifies that the type of virtual network gateway created is a VPN gateway. After you create a VPN gateway, you can create an IPsec/IKE VPN tunnel connection between that VPN gateway and another VPN gateway (VNet-to-VNet), or create a cross-premises IPsec/IKE VPN tunnel connection between the VPN gateway and an on-premises VPN device (Site-to-Site). You can also create a Point-to-Site VPN connection (VPN over IKEv2 or SSTP), which lets you connect to your virtual network from a remote location, such as from a conference or from home.
 
 ## <a name="configuring"></a>Configuring a VPN Gateway
 
@@ -157,7 +149,6 @@ For frequently asked questions about VPN gateway, see the [VPN Gateway FAQ](vpn-
 
 ## Next steps
 
-- Plan your VPN gateway configuration. See [VPN Gateway Planning and Design](vpn-gateway-plan-design.md).
 - View the [VPN Gateway FAQ](vpn-gateway-vpn-faq.md) for additional information.
 - View the [Subscription and service limits](../azure-subscription-service-limits.md#networking-limits).
 - Learn about some of the other key [networking capabilities](../networking/networking-overview.md) of Azure.

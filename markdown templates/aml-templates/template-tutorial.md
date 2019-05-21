@@ -3,7 +3,7 @@ title: Verb action tutorial for Azure Machine Learning service  in 59 chars or l
 description: This tutorial …blah blah blah. This string describes the article in 115 to 145 characters. Include the word 'tutorial' in your description. Use SEO kind of action verbs here. such as - Learn how to do this and that using customer words. This info is displayed on the search page inline with the article date stamp. If your intro para describes your article's intent, you can use it here edited for length.
 services: machine-learning
 ms.service: machine-learning
-ms.component: core
+ms.subservice: core
 ms.topic: tutorial
 ms.reviewer: jmartens
 ms.author: your-msft-alias
@@ -17,7 +17,7 @@ AUTHORS: A single sentence intro about AML. Intro paragraph to explain the inten
 
 In this tutorial you will do X...
 
-AUTHORS: Quick read tutorial guidance: https://review.docs.microsoft.com/en-us/help/contribute/contribute-how-to-mvc-tutorial?branch=master  And, don't forget to run Acrolinx to find issues before you commit.
+AUTHORS: Quick read tutorial guidance: https://review.docs.microsoft.com/help/contribute/contribute-how-to-mvc-tutorial?branch=master  And, don't forget to run Acrolinx to find issues before you commit.
 
 In this tutorial, you use X to do Y or you learn how to:
 > [!div class="checklist"]
@@ -25,20 +25,19 @@ In this tutorial, you use X to do Y or you learn how to:
 > * Do something
 > * Do something else
 > * Finish something 
-
->[Important!]
->Avoid notes, tips, and important boxes. Except for this one, ha!
->
->Tutorials are typically longer and more complex than quickstarts. They are created from the list of top user tasks identified in milestone one and focus on the single best procedure for completing that task. A tutorial usually aligns to one or two customer tasks. At a minimum, you need one tutorial in the Tutorials node of the TOC.
 > 
->Tutorials are 100 – 200 level for an audience new to the service, product, or scenario. Ideally, your tutorials should build on each other using a common theme with the result being a completed customer scenario. Unlike how-to content, they are not open-ended, exhaustive walkthroughs of a feature.
+> [Important!]
+> Avoid notes, tips, and important boxes. Except for this one, ha!
+> 
+> Tutorials are typically longer and more complex than quickstarts. They are created from the list of top user tasks identified in milestone one and focus on the single best procedure for completing that task. A tutorial usually aligns to one or two customer tasks. At a minimum, you need one tutorial in the Tutorials node of the TOC.
+> 
+> Tutorials are 100 – 200 level for an audience new to the service, product, or scenario. Ideally, your tutorials should build on each other using a common theme with the result being a completed customer scenario. Unlike how-to content, they are not open-ended, exhaustive walkthroughs of a feature.
 
 ## Prerequisites
 
 To complete this tutorial, you need:
 * An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin. 
-* An experimentation account and Azure Machine Learning Workbench installed as described in this [quickstart](quickstart-installation.md)
-* The project and prepared Iris data from [Tutorial part 1](tutorial-classifying-iris-part-1.md)
+* An Azure Machine Learning service workspace. Learn how to get create a workspace in the [Get started](quickstart-get-started.md#create-a-workspace) quickstart.
 * A Docker engine installed and running locally. Docker's Community Edition is sufficient. Learn how to install Docker here: https://docs.docker.com/engine/installation/.
 
 

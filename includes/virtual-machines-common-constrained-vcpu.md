@@ -21,6 +21,12 @@ The licensing fees charged for SQL Server or Oracle are constrained to the new v
 
 | Name                | vCPU | Specs           |
 |---------------------|------|-----------------|
+| Standard_M8-2ms     | 2    | Same as M8ms    |
+| Standard_M8-4ms     | 4    | Same as M8ms    |
+| Standard_M16-4ms    | 4    | Same as M16ms   |
+| Standard_M16-8ms    | 8    | Same as M16ms   |
+| Standard_M32-8ms    | 8    | Same as M32ms   |
+| Standard_M32-16ms   | 16   | Same as M32ms   |
 | Standard_M64-32ms   | 32   | Same as M64ms   |
 | Standard_M64-16ms   | 16   | Same as M64ms   |
 | Standard_M128-64ms  | 64   | Same as M128ms  |
@@ -30,7 +36,7 @@ The licensing fees charged for SQL Server or Oracle are constrained to the new v
 | Standard_E8-2s_v3   | 2    | Same as E8s_v3  |
 | Standard_E16-8s_v3  | 8    | Same as E16s_v3 |
 | Standard_E16-4s_v3  | 4    | Same as E16s_v3 |
-| Standard_E32-16_v3  | 16   | Same as E32s_v3 |
+| Standard_E32-16s_v3 | 16   | Same as E32s_v3 |
 | Standard_E32-8s_v3  | 8    | Same as E32s_v3 |
 | Standard_E64-32s_v3 | 32   | Same as E64s_v3 |
 | Standard_E64-16s_v3 | 16   | Same as E64s_v3 |
